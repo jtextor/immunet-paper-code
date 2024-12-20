@@ -1,0 +1,97 @@
+\documentclass[]{article}
+
+%\documentclass[a4paper]{article}
+%\usepackage[margin=.7in]{geometry}
+
+\usepackage{fontspec}
+\setmainfont{Helvetica Neue Light}
+\usepackage{upgreek}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+
+\newcommand\figf{\bfseries\normalsize}
+
+
+\definecolor{dapi_color}{HTML}{00009C} 
+\definecolor{cd3_color}{HTML}{BB0000} 
+\definecolor{foxp3_color}{HTML}{007E31} 
+\definecolor{cd20_color}{HTML}{E500E5} 
+\definecolor{cd45ro_color}{HTML}{E8E800} 
+\definecolor{cd8_color}{HTML}{00AEAE} 
+
+\begin{document}
+
+\begin{tikzpicture}[]
+
+\footnotesize
+
+\begin{scope}[xshift=1.2cm, yshift=0.5cm]
+
+\tikzstyle{ps}=[line width=3mm, cap=round]
+
+\node [anchor=west] (dapi) at (.6,0) {DAPI};   \draw [ps, dapi_color] ([xshift=-0.3cm, yshift=0]dapi.west) -- ([xshift=-0.1cm, yshift=0]dapi.west); 
+
+
+\node [anchor=west] (cd3) at ([xshift=1cm, yshift=0]dapi.east) {CD3+}; \draw [ps, cd3_color] ([xshift=-0.3cm, yshift=0]cd3.west) -- ([xshift=-0.1cm, yshift=0]cd3.west); 
+
+\node [anchor=west] (cd20) at ([xshift=1cm, yshift=0]cd3.east) {CD20+}; \draw [ps, cd20_color] ([xshift=-0.3cm, yshift=0]cd20.west) -- ([xshift=-0.1cm, yshift=0]cd20.west);
+
+\node [anchor=west] (foxp3) at ([xshift=1cm, yshift=0]cd20.east) {CD3+ FOXP3+}; \draw [ps, foxp3_color] ([xshift=-0.3cm, yshift=0]foxp3.west) -- ([xshift=-0.1cm, yshift=0]foxp3.west);
+
+\node [anchor=west] (cd8) at ([xshift=1cm, yshift=0]foxp3.east) {CD3+ CD8+}; \draw [ps, cd8_color] ([xshift=-0.3cm, yshift=0]cd8.west) -- ([xshift=-0.1cm, yshift=0]cd8.west);
+
+\node [anchor=west] (cd45ro) at ([xshift=1cm, yshift=0]cd8.east) {CD3+ CD45RO+}; \draw [ps, cd45ro_color] ([xshift=-0.3cm, yshift=0]cd45ro.west) -- ([xshift=-0.1cm, yshift=0]cd45ro.west);
+
+\end{scope}
+
+\node [anchor=north west] at (0.5,0) {\includegraphics[width=4.5cm]{images/cells.jpg}};
+\node [anchor=north west] at (6.4,-.2) {\includegraphics[width=4.2cm]{images/cells_slice.jpg}};
+\node [anchor=north west] at (0,0) {\figf A}; 
+
+\begin{scope}[xshift=7mm]
+\node [anchor=north west] at (11.5,-.4) {\includegraphics[width=4cm]{images/composite.png}};
+\node (sb) [white, anchor=south west] at (11.6,-4.2) {\bfseries 50µm};
+\draw [white, line width=2mm] ([xshift=.8mm,yshift=-1mm]sb.south west) -- +(1.5625,0);
+\end{scope}
+
+\draw [very thick,->] (5.35,-2.5) -- +(1,0);
+\draw [very thick,->] (10.9,-2.5) -- +(1,0);
+
+\begin{scope}[yshift=-5cm]
+\node [anchor=north west] at (4,0) {\includegraphics{plots/simulated-expression-low-density.pdf}};
+\node [anchor=north west] at (12.5,0) {\includegraphics{plots/simulated-expression-high-density.pdf}};
+\node [anchor=north west] at (.5,0) {\includegraphics[width=3.5cm]{images/low_density.png}};
+\node [anchor=north west] at (9,0) {\includegraphics[width=3.5cm]{images/high_density.png}};
+\node [anchor=north west] at (0,0) {\figf B}; 
+\node [anchor=north west] at (8.5,0) {\figf C};
+\node (sb) [white, anchor=south west] at (0.6,-3.25) {\bfseries 50µm};
+\draw [white, line width=2mm] ([xshift=.8mm,yshift=-1mm]sb.south west) -- +(1.5625,0);
+\end{scope}
+
+\begin{scope}[yshift=-9cm]
+\node [anchor=north west] at (0,0) {\includegraphics{plots/expressions.pdf}};
+\node [anchor=north west] at (0,0) {\figf D}; 
+\end{scope}
+
+
+\begin{scope}[yshift=-12cm]
+\node [anchor=north west] at (4,0) {\includegraphics{plots/simulated-expression-medium-density-membrane.pdf}};
+\node [anchor=north west] at (12.5,0) {\includegraphics{plots/simulated-expression-medium-density-full.pdf}};
+\node [anchor=north west] at (.5,0) {\includegraphics[width=3.5cm]{images/medium_density_membrane.png}};
+\node [anchor=north west] at (9,0) {\includegraphics[width=3.5cm]{images/medium_density_full_expression.png}};
+\node [anchor=north west] at (0,0) {\figf E}; 
+\node [anchor=north west] at (8.5,0) {\figf F}; 
+\node (sb) [white, anchor=south west] at (0.6,-3.25) {\bfseries 50µm};
+\draw [white, line width=2mm] ([xshift=.8mm,yshift=-1mm]sb.south west) -- +(1.5625,0);
+
+\end{scope}
+
+
+\end{tikzpicture}
+
+\end{document}

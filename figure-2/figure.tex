@@ -1,0 +1,400 @@
+\documentclass[border=10pt, multi, tikz]{standalone}
+
+%\documentclass[a4paper]{article}
+%\usepackage[margin=.7in]{geometry}
+
+\usepackage{fontspec}
+\setmainfont{Helvetica Neue Light}
+\usepackage{upgreek}
+
+
+
+\usepackage{tikz}
+
+\usepackage{import}
+\subimport{./layers/}{init}
+\usetikzlibrary{positioning}
+\usetikzlibrary{3d} %for including external image 
+
+\definecolor{reluorange}{HTML}{FDBB65} 
+
+\definecolor{likert1}{HTML}{0A61FE} 
+\definecolor{likert2}{HTML}{1A91AA} 
+\definecolor{likert3}{HTML}{FFFFFF} 
+\definecolor{likert4}{HTML}{FDB60D} 
+\definecolor{likert5}{HTML}{D11D36} 
+
+
+\def\ConvColor{rgb:yellow,5;red,2.5;white,5}
+\def\ConvReluColor{rgb:yellow,5;red,5;white,5}
+\def\PoolColor{rgb:red,1;black,0.3}
+\def\DcnvColor{rgb:blue,5;green,2.5;white,5}
+\def\SoftmaxColor{rgb:magenta,5;black,7}
+\def\SumColor{rgb:blue,5;green,15}
+\def\ReluColor{reluorange}
+
+%\usepackage[active,tightpage]{preview}
+%\PreviewEnvironment{tikzpicture}
+
+
+\begin{document}
+
+\begin{tikzpicture}[]
+
+\footnotesize
+
+\clip(-1.6,-6) rectangle (15,10);
+
+\begin{scope}[yshift=8.5cm]
+
+\tikzstyle{every node}=[inner sep=2pt];
+
+\node (a) at (0,0) {\includegraphics[width=2.2cm]{images/composite.jpg}};
+\node [anchor=south] at (a.north) {composite};
+\node [anchor=south east] at (a.north west) {\bfseries \normalsize A};
+\node [anchor=south east] at ([yshift=-3.1cm]a.north west) {\bfseries \normalsize B};
+\node [anchor=south east] at ([xshift=4.6cm,yshift=-3.1cm]a.north west) {\bfseries \normalsize C};
+\node [anchor=south east] at ([yshift=-6.4cm]a.north west) {\bfseries \normalsize D};
+
+
+\draw [line width=2mm] ([yshift=-2mm,xshift=2pt]a.south west) -- node [at end,anchor=west] {20$\upmu$m} +(1.189189,0);
+
+\node [anchor=west] (a) at (a.east) {\includegraphics[width=2.2cm]{images/0.jpg}};
+\node [anchor=south] at (a.north) {DAPI};
+\node [anchor=west] (a) at (a.east) {\includegraphics[width=2.2cm]{images/1.jpg}};
+\node [anchor=south] at (a.north) {CD3};
+\node [anchor=west] (a) at (a.east) {\includegraphics[width=2.2cm]{images/3.jpg}};
+\node [anchor=south] at (a.north) {CD20};
+\node [anchor=west] (a) at (a.east) {\includegraphics[width=2.2cm]{images/2.jpg}};
+\node [anchor=south] at (a.north) {FOXP3};
+\node [anchor=west] (a) at (a.east) {\includegraphics[width=2.2cm]{images/5.jpg}};
+\node [anchor=south] at (a.north) {CD8};
+\node [anchor=west] (a) at (a.east) {\includegraphics[width=2.2cm]{images/4.jpg}};
+\node [anchor=south] at (a.north) {CD45RO};
+
+
+\end{scope}
+
+\begin{scope}[yshift=5.5cm]
+
+\tikzstyle{every node}=[inner sep=2pt];
+
+\node (a) at (0,0) {\includegraphics[width=2.2cm]{images/composite.jpg}};
+
+\node [anchor=west] (a) at ([xshift=2.36cm]a.east) {\includegraphics[width=2.2cm]{images/1.jpg}};
+\node [anchor=south] at (a.north) {CD3};
+\node [anchor=west] (a) at (a.east) {\includegraphics[width=2.2cm]{images/3.jpg}};
+\node [anchor=south] at (a.north) {CD20};
+\node [anchor=west] (a) at (a.east) {\includegraphics[width=2.2cm]{images/2.jpg}};
+\node [anchor=south] at (a.north) {FOXP3};
+\node [anchor=west] (a) at (a.east) {\includegraphics[width=2.2cm]{images/5.jpg}};
+\node [anchor=south] at (a.north) {CD8};
+\node [anchor=west] (a) at (a.east) {\includegraphics[width=2.2cm]{images/4.jpg}};
+\node [anchor=south] at (a.north) {CD45RO};
+
+\node (ann1) [circle, draw, thick, fill=white] at (0.05,-.24) {};
+\node (ann2) [circle, draw, thick, fill=white] at (0.35,.6) {};
+\node (ann3) [circle, draw, thick, fill=white] at (-.94,0.25) {};
+
+\node [anchor=west,fill=black!20] at (ann1.east) {T cell};
+\node [anchor=west,fill=black!20] at (ann2.east) {B cell};
+\node [anchor=west,fill=black!20] at (ann3.east) {No cell};
+
+\begin{scope}[xshift=2.36cm]
+\tikzstyle{every node}=[circle, draw, very thick, inner sep=4pt]
+\begin{scope}[xshift=2.36cm]
+\node (ann1) [fill=likert5] at (0.05,-.24) {};
+\node (ann2) [fill=likert1] at (0.35,.6) {};
+\node (ann3) [fill=likert1] at (-.94,0.25) {};
+\end{scope}
+\begin{scope}[xshift=4.72cm]
+\node (ann1) [fill=likert1] at (0.05,-.24) {};
+\node (ann2) [fill=likert5] at (0.35,.6) {};
+\node (ann3) [fill=likert1] at (-.94,0.25) {};
+\end{scope}
+\begin{scope}[xshift=7.08cm]
+\node (ann1) [fill=likert5] at (0.05,-.24) {};
+\node (ann2) [fill=likert1] at (0.35,.6) {};
+\node (ann3) [fill=likert1] at (-.94,0.25) {};
+\end{scope}
+\begin{scope}[xshift=9.44cm]
+\node (ann1) [fill=likert1] at (0.05,-.24) {};
+\node (ann2) [fill=likert1] at (0.35,.6) {};
+\node (ann3) [fill=likert1] at (-.94,0.25) {};
+\end{scope}
+\begin{scope}[xshift=11.8cm]
+\node (ann1) [fill=likert2] at (0.05,-.24) {};
+\node (ann2) [fill=likert2] at (0.35,.6) {};
+\node (ann3) [fill=likert1] at (-.94,0.25) {};
+\end{scope}
+\end{scope}
+
+
+\begin{scope}[xshift=4.7cm, yshift=-1.5cm]
+\tikzstyle{every node}=[anchor=west]
+\node (a) at (0,0) {positive};
+\node [circle,draw,thick,fill=likert5,anchor=east] at (a.west) {};
+\node (a) at ([xshift=3mm]a.east) {probably positive};
+\node [circle,draw,thick,fill=likert4,anchor=east] at (a.west) {};
+\node (a) at ([xshift=3mm]a.east) {unclear\phantom{j}};
+\node [circle,draw,thick,fill=likert3,anchor=east] at (a.west) {};
+\node (a) at ([xshift=3mm]a.east) {probably negative};
+\node [circle,draw,thick,fill=likert2,anchor=east] at (a.west) {};
+\node (a) at ([xshift=3mm]a.east) {negative};
+\node [circle,draw,thick,fill=likert1,anchor=east] at (a.west) {};
+\end{scope}
+
+
+\end{scope}
+
+\begin{scope}[yshift=-5cm]
+
+\tikzstyle{every node}=[inner sep=2pt];
+
+\node (a) at (0,0) {\includegraphics[width=2.2cm]{images/cells.jpg}};
+\node [anchor=south] at (a.north) {$\uppsi$composite};
+\node [anchor=south east] at (a.north west) {\bfseries \large E};
+
+%\draw [line width=2mm] ([yshift=-2mm,xshift=2pt]a.south west) -- node [at end,anchor=west] {20$\upmu$m} +(1.189189,0);
+
+\node [anchor=west] (a) at (a.east) {\includegraphics[width=2.2cm]{images/dist.jpg}};
+\node [anchor=south] at (a.north) {proximity};
+\node [anchor=west] (a) at (a.east) {\includegraphics[width=2.2cm]{images/p1.jpg}};
+\node [anchor=south] at (a.north) {$\uppsi$CD3};
+\node [anchor=west] (a) at (a.east) {\includegraphics[width=2.2cm]{images/p3.jpg}};
+\node [anchor=south] at (a.north) {$\uppsi$CD20};
+\node [anchor=west] (a) at (a.east) {\includegraphics[width=2.2cm]{images/p2.jpg}};
+\node [anchor=south] at (a.north) {$\uppsi$FOXP3};
+\node [anchor=west] (a) at (a.east) {\includegraphics[width=2.2cm]{images/p5.jpg}};
+\node [anchor=south] at (a.north) {$\uppsi$CD8};
+\node [anchor=west] (a) at (a.east) {\includegraphics[width=2.2cm]{images/p4.jpg}};
+\node [anchor=south] at (a.north) {$\uppsi$CD45RO};
+
+\end{scope}
+
+\begin{scope}[xshift=0mm,yshift=0mm]
+
+\tikzstyle{connection}=[->,thick,draw=black,opacity=0.7]
+
+\coordinate (input) at (0,0,0);
+
+%% input images
+\node[canvas is zy plane at x=-1.2,draw=white,thick,inner sep=0pt] at (0,1.375,0) {\includegraphics[width=1.75cm,height=1.75cm]{images/0.jpg}};
+\node[canvas is zy plane at x=-1,draw=white,thick,inner sep=0pt] at (0,1.375,0) {\includegraphics[width=1.75cm,height=1.75cm]{images/1.jpg}};
+\node[canvas is zy plane at x=-.8,draw=white,thick,inner sep=0pt] at (0,1.375,0) {\includegraphics[width=1.75cm,height=1.75cm]{images/3.jpg}};
+\node[canvas is zy plane at x=-.6,draw=white,thick,inner sep=0pt] at (0,1.375,0) {\includegraphics[width=1.75cm,height=1.75cm]{images/2.jpg}};
+\node[canvas is zy plane at x=-.4,draw=white,thick,inner sep=0pt] at (0,1.375,0) {\includegraphics[width=1.75cm,height=1.75cm]{images/5.jpg}};
+\node[canvas is zy plane at x=-.2,draw=white,thick,inner sep=0pt] at (0,1.375,0) {\includegraphics[width=1.75cm,height=1.75cm]{images/4.jpg}};
+\node[canvas is zy plane at x=0,draw=white,thick,inner sep=0pt] at (0,1.375,0) {\includegraphics[width=1.75cm,height=1.75cm]{images/6.jpg}};
+
+\path [draw=white] (0,.45,0) edge ["63"',sloped] (0,.45,1); 
+
+\coordinate [shift={(.75,0,0)}] (convblock1) at (input.east);
+
+
+\draw [connection]  (0,1.375,0)  -- +(.425,0,0) |- +(1,1.375,0);
+\draw [connection]  (0,1.375,0)  -- +(.425,0,0) |- +(1,-1.375,0);
+
+
+\pic at (0,-2,0) {Box={name=legend1,fill=\ConvColor,height=2,width=2,depth=2}};
+\node (l1l) [anchor=west] at (legend1-east) {2D convolutional layer};
+
+\pic at ([xshift=5mm]l1l.east) {Box={name=legend2,fill=\ConvColor,height=2,width=.5,depth=2}};
+\pic at ([xshift=5mm]l1l.east) {Box={name=legend2,fill=\ReluColor,height=2,width=.5,depth=2}};
+\node (l2l) [anchor=west] at (legend2-east) {ReLU activation};
+
+\pic at ([xshift=5mm]l2l.east) {Box={name=legend3,fill=\PoolColor,height=2,width=.5,depth=2}};
+\node [anchor=west] at (legend3-east) {MaxPool};
+
+
+
+% resnet block 1
+
+\pic[shift={(0.25,2.75,0)}] at (convblock1) {Box={name=addconv1,%
+        xlabel={{"64","64"}},zlabel={58},fill=\ConvColor,%
+        height=5.8,width=1,depth=5.8}};
+
+\pic [anchor=west] at (convblock1) {RightBandedBox={name=cr1,%
+        xlabel={{"",""}},zlabel={},fill=\ConvColor,bandfill=\ConvReluColor,%
+        height=6,width=1,depth=6}};
+
+\pic[shift={(0,0,0)}] at (cr1-east) {Box={name=cr2,%
+        xlabel={{"64",""}},zlabel={58},fill=\ConvColor,%
+        height=5.8,width=1,depth=5.8}};
+
+\node [circle,fill=black!20,shift={(.6,0,0)},align=center,inner sep=1pt] (add) at (cr2-east) {\bfseries +};
+
+\coordinate [shift={(.4,0,0)}] (incoming-activation) at (add.east);
+
+\draw [connection]  (add.east) -- (incoming-activation);
+
+\pic [anchor=west] at (incoming-activation) {Box={name=activation_1,%
+        xlabel={{"","64"}},zlabel={},fill=\ConvColor,opacity=.6,%
+        height=5.8,width=.5,depth=5.8}};
+\pic [anchor=west] at (incoming-activation) {Box={name=activation_1,%
+        xlabel={{"","64"}},zlabel={},fill=\ConvReluColor,opacity=.6,%
+        height=5.8,width=.5,depth=5.8}};
+
+
+\pic[shift={(0,0,0)}] at (activation_1-east) {Box={name=max1,%
+        xlabel={{"",""}},zlabel={57},fill=\PoolColor,%
+        height=5.7,width=.5,depth=5.7}};
+
+\draw [connection]  (cr2-east)    -- (add.west);
+\draw [connection]  (addconv1-east)    -| (add.north);
+
+
+
+% resnet block 2 
+
+\coordinate [shift={(.75,0,0)}] (convblock1) at (activation_1-east);
+\draw [connection]  (activation_1-east)    -- (convblock1.west);
+\draw [connection]  (activation_1-east)  -- +(.425,0,0) |- +(1,2.75,0);
+
+\pic[shift={(0.25,2.75,0)}] at (convblock1) {Box={name=addconv1,%
+        xlabel={{"128","64"}},zlabel={49},fill=\ConvColor,%
+        height=4.9,width=2,depth=4.9}};
+
+\pic [anchor=west] at (convblock1) {RightBandedBox={name=cr1,%
+        xlabel={{"",""}},zlabel={},fill=\ConvColor,bandfill=\ConvReluColor,%
+        height=5.3,width=2,depth=5.3}};
+
+\pic[shift={(0,0,0)}] at (cr1-east) {Box={name=cr2,%
+        xlabel={{"128",""}},zlabel={49},fill=\ConvColor,%
+        height=4.9,width=2,depth=4.9}};
+
+\node [circle,fill=black!20,shift={(.6,0,0)},align=center,inner sep=1pt] (add) at (cr2-east) {\bfseries +};
+
+\coordinate [shift={(.4,0,0)}] (incoming-activation) at (add.east);
+
+\draw [connection]  (add.east) -- (incoming-activation);
+
+
+\pic [anchor=west] at (incoming-activation) {Box={name=activation_1,%
+        xlabel={{"","64"}},zlabel={},fill=\ConvColor,opacity=.6,%
+        height=4.9,width=.5,depth=4.9}};
+\pic [anchor=west] at (incoming-activation) {Box={name=activation_1,%
+        xlabel={{"","64"}},zlabel={},fill=\ConvReluColor,opacity=.6,%
+        height=4.9,width=.5,depth=4.9}};
+
+
+\pic[shift={(0,0,0)}] at (activation_1-east) {Box={name=max1,%
+        xlabel={{"",""}},zlabel={47},fill=\PoolColor,%
+        height=4.7,width=.5,depth=4.7}};
+
+\draw [connection]  (cr2-east)    -- (add.west);
+\draw [connection]  (addconv1-east)    -| (add.north);
+
+
+% resnet block 3 
+
+\coordinate [shift={(.75,0,0)}] (convblock1) at (activation_1-east);
+\draw [connection]  (activation_1-east)    -- (convblock1.west);
+\draw [connection]  (activation_1-east)  -- +(.425,0,0) |- +(1,2.75,0);
+
+\pic[shift={(0.25,2.75,0)}] at (convblock1) {Box={name=addconv1,%
+        xlabel={{"256","64"}},zlabel={31},fill=\ConvColor,%
+        height=3.1,width=4,depth=3.1}};
+
+\pic [anchor=west] at (convblock1) {RightBandedBox={name=cr1,%
+        xlabel={{"",""}},zlabel={},fill=\ConvColor,bandfill=\ConvReluColor,%
+        height=3.9,width=4,depth=3.9}};
+
+\pic[shift={(0,0,0)}] at (cr1-east) {Box={name=cr2,%
+        xlabel={{"256",""}},zlabel={31},fill=\ConvColor,%
+        height=3.1,width=4,depth=3.1}};
+
+\node [circle,fill=black!20,shift={(.6,0,0)},align=center,inner sep=1pt] (add) at (cr2-east) {\bfseries +};
+
+\coordinate [shift={(.4,0,0)}] (incoming-activation) at (add.east);
+
+\draw [connection]  (add.east) -- (incoming-activation);
+
+\pic [anchor=west] at (incoming-activation) {Box={name=activation_1,%
+        xlabel={{"","64"}},zlabel={},fill=\ConvColor,opacity=.6,%
+        height=3.1,width=.5,depth=3.1}};
+\pic [anchor=west] at (incoming-activation) {Box={name=activation_1,%
+        xlabel={{"","64"}},zlabel={},fill=\ConvReluColor,opacity=.6,%
+        height=3.1,width=.5,depth=3.1}};
+
+\pic[shift={(0,0,0)}] at (activation_1-east) {Box={name=max1,%
+        xlabel={{"",""}},zlabel={27},fill=\PoolColor,%
+        height=2.7,width=.5,depth=2.7}};
+
+\draw [connection]  (cr2-east)    -- (add.west);
+\draw [connection]  (addconv1-east)    -| (add.north);
+
+
+
+%% final dense layers
+
+\coordinate [shift={(.75,0,0)}] (convblock1) at (activation_1-east);
+
+
+\draw [connection]  (activation_1-east)    -- (convblock1.west);
+
+
+\pic [anchor=west] at (convblock1) {RightBandedBox={name=cr1,%
+        xlabel={{"512",""}},zlabel={3},fill=\ConvColor,bandfill=\ConvReluColor,%
+        height=.5,width=8,depth=.5}};
+\pic [anchor=west] at ([xshift=5mm]cr1-east) {RightBandedBox={name=cr2,%
+        xlabel={{"512",""}},zlabel={3},fill=\ConvColor,bandfill=\ConvReluColor,%
+        height=.5,width=8,depth=.5}};
+\draw [connection] (cr1-east) -- (cr2-west);
+
+\draw [connection]  (cr2-east) -- +(.5,0) |- +(-3.1,-.75) |- +(-2.8,-2);
+\draw [connection]  (cr2-east) -- +(.5,0) |- +(-3.1,.75) |- +(-2.8,2);
+
+
+%% DL 1
+
+
+\pic [shift={(.9,-2,0)},anchor=west] at (convblock1) {RightBandedBox={name=crprox,%
+        xlabel={{"512",""}},zlabel={3},fill=\ConvColor,bandfill=\ConvReluColor,%
+        height=.5,width=8,depth=.5}};
+        
+\coordinate [shift={(.9,-2,0)}] (fc1) at (convblock1);
+ 
+\pic [shift={(2.1,0)},anchor=west] at (fc1) {RightBandedBox={name=crprox1,%
+        xlabel={{"1",""}},zlabel={3},fill=\ConvColor,bandfill=\ConvReluColor,%
+        height=.5,width=0.6,depth=.5}};
+        
+\draw [connection]  (crprox-east)    -- (crprox1-west); 
+
+\node [anchor=north east,yshift=-5mm] at (crprox-east) {proximity branch};
+
+
+
+%% DL 2
+
+\pic [shift={(.9,2,0)},anchor=west] at (convblock1) {RightBandedBox={name=cr2,%
+        xlabel={{"512",""}},zlabel={3},fill=\ConvColor,bandfill=\ConvReluColor,%
+        height=.5,width=8,depth=.5}};
+
+\coordinate [shift={(.9, 2,0)}] (fc2) at (convblock1);
+
+\pic [shift={(2.1,0)},anchor=west] at (fc2) {RightBandedBox={name=cr3,%
+        xlabel={{"5",""}},zlabel={3},fill=\ConvColor,bandfill=\ConvReluColor,%
+        height=.5,width=1.6,depth=.5}};
+        
+\draw [connection]  (cr2-east)    -- (cr3-west); 
+        
+\node [anchor=south] at ([yshift=2mm]cr2-west) {pseudomarker branch};
+
+
+\node[shift={(1,0,0)},canvas is zy plane at x=0,draw=white,thick,inner sep=0pt] at (cr3-east) {\includegraphics[width=1.75cm,height=1.75cm]{images/p1.jpg}};
+\node[shift={(1.2,0,0)},canvas is zy plane at x=0,draw=white,thick,inner sep=0pt] at (cr3-east) {\includegraphics[width=1.75cm,height=1.75cm]{images/p3.jpg}};
+\node[shift={(1.4,0,0)},canvas is zy plane at x=0,draw=white,thick,inner sep=0pt] at (cr3-east) {\includegraphics[width=1.75cm,height=1.75cm]{images/p2.jpg}};
+\node[shift={(1.6,0,0)},canvas is zy plane at x=0,draw=white,thick,inner sep=0pt] at (cr3-east) {\includegraphics[width=1.75cm,height=1.75cm]{images/p5.jpg}};
+\node[shift={(1.8,0,0)},canvas is zy plane at x=0,draw=white,thick,inner sep=0pt] at (cr3-east) {\includegraphics[width=1.75cm,height=1.75cm]{images/p4.jpg}};
+
+\node[shift={(1.8,0,0)},canvas is zy plane at x=0,draw=white,fill=red,thick,inner sep=2pt] at (cr3-east) {};
+
+\node[shift={(1,0,0)},canvas is zy plane at x=0,draw=white,thick,inner sep=0pt] at (crprox1-east) {\includegraphics[width=1.75cm,height=1.75cm]{images/dist.jpg}};
+\node[shift={(1,0,0)},canvas is zy plane at x=0,draw=white,fill=red,thick,inner sep=2pt] at (crprox1-east) {};
+
+\end{scope}
+
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,155 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage{fontspec}
+\setsansfont{Helvetica Neue Light}
+
+\date{\today}
+
+\usepackage{xcolor}
+\usepackage[utf8x]{inputenc}
+
+%\usepackage[margin=.7in]{geometry}
+
+\usepackage{upgreek}
+\setlength{\parskip}{\baselineskip} 
+\setlength{\parindent}{0pt}
+
+\usepackage[]{graphicx}
+\usepackage{tikz}
+
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+
+
+\begin{document}
+
+\pagestyle{empty}
+
+\begin{tikzpicture}
+
+\sffamily \footnotesize
+
+\node [anchor=south east] at (-.7,0) {\bfseries \normalsize A};
+
+\begin{scope}[xshift=12.5cm, yshift=-7cm]
+
+\node [anchor=north east] at (-.5,0) {\bfseries \normalsize D};
+
+\node at (1.2,-2.6) {\includegraphics{images/cartoon_hit_criterion.pdf}};
+
+\end{scope}
+
+
+\node [anchor=south,rotate=90,text width=4cm,align=center] at (-.1,-1.5) {multiplex \\[-1mm] images};
+
+\node [anchor=south,rotate=90,text width=4cm,align=center] at (-.1,-4.6) {network \\[-1mm] predictions};
+
+\begin{scope}[xshift=12.8cm]
+\node [anchor=south] at (1.5,0) {tonsil};
+\node [anchor=north west, inner sep=0pt] at (0,0) {\includegraphics[width=3cm]{images/cm-1.jpg}};
+\node [anchor=north west, inner sep=0pt] at (0,-3.1) {\includegraphics[width=3cm]{images/ph-1.jpg}};
+\end{scope}
+
+
+
+\begin{scope}[xshift=0cm]
+\node [anchor=south] at (1.5,0) {bladder};
+\node [anchor=north west, inner sep=0pt] at (0,0) {\includegraphics[width=3cm]{images/cm-2.jpg}};
+\node [anchor=north west, inner sep=0pt] at (0,-3.1) {\includegraphics[width=3cm]{images/ph-2.jpg}};
+\end{scope}
+
+\begin{scope}[xshift=6.4cm]
+\node [anchor=south] at (1.5,0) {melanoma};
+\node [anchor=north west, inner sep=0pt] at (0,0) {\includegraphics[width=3cm]{images/cm-3.jpg}};
+\node [anchor=north west, inner sep=0pt] at (0,-3.1) {\includegraphics[width=3cm]{images/ph-3.jpg}};
+\end{scope}
+
+\begin{scope}[xshift=9.6cm]
+\node [anchor=south] at (1.5,0) {prostate};
+\node [anchor=north west, inner sep=0pt] at (0,0) {\includegraphics[width=3cm]{images/cm-4.jpg}};
+\node [anchor=north west, inner sep=0pt] at (0,-3.1) {\includegraphics[width=3cm]{images/ph-4.jpg}};
+\end{scope}
+
+
+\begin{scope}[xshift=3.2cm]
+\node [anchor=south] at (1.5,0) {lung};
+\node [anchor=north west, inner sep=0pt] at (0,0) {\includegraphics[width=3cm]{images/cm-5.jpg}};
+\node [anchor=north west, inner sep=0pt] at (0,-3.1) {\includegraphics[width=3cm]{images/ph-5.jpg}};
+\end{scope}
+
+
+
+% scale bar
+\begin{scope}[yshift=-6.5cm]
+
+\tikzstyle{ps}=[line width=3mm, cap=round]
+
+\draw [line width=1mm, black] (0,0) -- (.6,0); \node [anchor=west] at (.6,0) {20µm};  
+
+\begin{scope}[xshift=2cm]
+\draw [ps, blue!70!black] (.3,0) -- (.5,0); \node [anchor=west] at (.6,0) {DAPI};  
+\end{scope}
+
+\begin{scope}[xshift=3.7cm]
+\draw [ps, red!60!black] (.3,0) -- (.5,0); \node [anchor=west] at (.6,0) {(ψ)CD3};  
+\end{scope}
+
+
+\begin{scope}[xshift=5.7cm]
+\draw [ps, magenta!90] (.3,0) -- (.5,0); \node [anchor=west] at (.6,0) {(ψ)CD20};  
+\end{scope}
+
+
+\begin{scope}[xshift=8cm]
+\draw [ps, green!80!black] (.3,0) -- (.5,0); \node [anchor=west] at (.6,0) {(ψ)FOXP3};
+\end{scope}
+
+
+\begin{scope}[xshift=12.7cm]
+\draw [ps, yellow!70!black] (.3,0) -- (.5,0); \node [anchor=west] at (.6,0) {(ψ)CD45RO};  
+\end{scope}
+
+
+\begin{scope}[xshift=10.4cm]
+\draw [ps, cyan!70!black] (.3,0) -- (.5,0); \node [anchor=west] at (.6,0) {(ψ)CD8};  
+\end{scope}
+
+\end{scope}
+
+
+
+\begin{scope}[xshift=0cm]
+\node [anchor=north east] at (-.7,-7) {\bfseries \normalsize B};
+\node at (-.9,-7) [anchor=north west] {\includegraphics[]{plots/tuning.pdf}};
+\end{scope}
+
+
+
+\begin{scope}[xshift=6cm]
+\node [anchor=north east] at (.6,-7) {\bfseries \normalsize C};
+\node at (0,-7) [anchor=north west] {\includegraphics[]{plots/tuning-pseudocolor-thresholds.pdf}};
+\end{scope}
+
+
+
+\begin{scope}[xshift=0cm,yshift=-12.5cm]
+\node [anchor=north east] at (-.7,0) {\bfseries \normalsize E};
+\node at (-.9,0) [anchor=north west] {\includegraphics[page=1]{plots/accuracy.pdf}};
+\end{scope}
+
+\begin{scope}[xshift=8.7cm,yshift=-12.5cm]
+\node [anchor=north east] at (-.7,0) {\bfseries \normalsize F};
+\node at (-.7,0) [anchor=north west] {\includegraphics[]{plots/accuracy-markers.pdf}};
+\end{scope}
+
+
+
+\end{tikzpicture}
+
+\end{document}
+
+
+% fluchtlinien 
+%\draw [blue] (0,0) -- (0,-25);
+%\draw [blue] (15.8,0) -- (15.8,-25);
+

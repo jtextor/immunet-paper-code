@@ -1,0 +1,99 @@
+\documentclass[10pt,border=2mm]{standalone}
+
+\usepackage{fontspec}
+\setmainfont{Helvetica Neue Light}
+
+\usepackage{upgreek}
+
+\usepackage{tikz}
+
+\newcommand{\figf}{\bfseries\normalsize}
+
+
+\begin{document}
+
+\small
+
+\begin{tikzpicture}[xscale=.9]
+
+\node at (-4.3,.3) {\figf A};
+
+\begin{scope}[xshift=2.15cm]
+
+\node at (0.1,-.4) {tonsil};
+\node at (-2.75,.3) {single cells};
+\node at (-5.25,.3) {AgarCyto};
+\node at (3.1,-.3) {slices};
+
+\begin{scope}[yshift=-1cm,xshift=-1mm,scale=.5,rotate=-90]
+
+  \shadedraw[black, very thick, ball color=brown!40] (0,0) arc (180:0:2 and -1.5) arc (180:360:-2 and 0.6);
+
+  \filldraw [fill=brown, very thick] (0,0) arc (180:-180:2 and 0.6);
+
+  \shadedraw[black, very thick, ball color=brown!40] (0,.8) arc (180:0:2 and 1.5) arc (180:360:-2 and 0.6);
+
+\end{scope}
+
+\begin{scope}[xshift=-5.5cm, yshift=-1cm, scale=.25]
+
+  \draw[black, thick] (0,0) arc (180:0:1 and -1.5) -- +(0,3) arc (180:360:-1 and 0.3) -- cycle;
+
+  \filldraw [fill=black!20, thick] (0,3) arc (180:-180:1 and 0.3);
+
+  \draw [ thick] (0.32,1.7) arc (180:360:.666 and 0.2);
+  \draw [ thick] (0.32,1.2) arc (180:360:.666 and 0.2);
+  \draw [ thick] (0.32,.7) arc (180:360:.666 and 0.2);
+  \draw [ thick] (0.32,.2) arc (180:360:.666 and 0.2);
+
+  %\filldraw [fill=brown, very thick] (0,0) arc (180:-180:2 and 0.6);
+
+\end{scope}
+
+
+\draw [thick] (-1,-2) edge [->] +(-.7,.7);
+\draw [thick] (1.2,-2) edge [->] +(.7,.7);
+\draw [thick] (-3.75,-.8) edge [->] +(-.75,0);
+
+\begin{scope}[xshift=-6cm]
+\foreach \i in {0,...,20} {
+	\pgfmathparse{2.7 + 1 * random()}
+	\pgfmathsetmacro{\y}{-1.25 + 1 * random()}
+	\shadedraw [ball color=brown!40] (\pgfmathresult,\y) circle (1mm);
+}
+\end{scope}
+
+
+\begin{scope}[xshift=2.2cm, yshift=-.8cm, scale=.4]
+\filldraw [very thick, draw=black, fill=brown] (0.2,-0.6) arc (180:0:1.8 and 0.6) arc (180:360:-1.8 and 0.6);
+\filldraw [very thick, draw=black, fill=brown] (0.1,-0.3) arc (180:0:1.9 and 0.6) arc (180:360:-1.9 and 0.6);
+\filldraw [very thick, draw=black, fill=brown] (0,0) arc (180:0:2 and 0.6) arc (180:360:-2 and 0.6);
+\end{scope}
+
+\begin{scope}[yshift=-2.3cm]
+\node [inner sep=0pt,anchor=north] (a) at (3,0) {\includegraphics[width=2cm]{images/cm-1.jpg}};
+\node [inner sep=0pt,anchor=north] (b) at (-2.75,0)  {\includegraphics[]{plots/biplots-facs.pdf}};
+\node [inner sep=0pt,anchor=north] (c) at (-5.25,0) {\includegraphics[width=2cm]{images/cm-6.jpg}};
+\draw [thick] (a.north) edge [<-,shorten <=1mm,shorten >=1mm] node [midway,right] {mIHC} +(0,.8);
+\draw [thick] (b.north) edge [<-,shorten <=1mm,shorten >=1mm] node [midway,right] {FCM} +(0,.8);
+\draw [thick] (c.north) edge [<-,shorten <=1mm,shorten >=1mm] node [midway,right] {mIHC} +(0,.8);
+\begin{scope}[xshift=-6.25cm]
+\draw [line width=1mm, black] (0,-2.3) -- (.4,-2.3); \node [anchor=west] at (.4,-2.3) {20µm};  
+\end{scope}
+\end{scope}
+
+\end{scope}
+
+\node at (6.5,.3) {\figf B};
+\node [inner sep=0pt,anchor=north west] (b) at (6.75,.3) {\includegraphics[]{plots/biplots.pdf}};
+
+\node at (-4.3,-5.3) {\figf C};
+\node at (4.3,-5.3) {\figf D};
+\node [inner sep=0pt,anchor=north west] (b) at (-4.5,-5.4) {\includegraphics[]{plots/populations.pdf}};
+
+\end{tikzpicture}
+
+
+\end{document}
+
+

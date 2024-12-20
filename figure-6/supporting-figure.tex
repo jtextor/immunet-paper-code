@@ -1,0 +1,87 @@
+\documentclass[a4paper]{article}
+
+\usepackage{fontspec}
+\setmainfont{Helvetica Neue Light}
+\usepackage{upgreek}
+
+\usepackage{xcolor}
+%\usepackage[utf8x]{inputenc}
+
+%\usepackage[]{graphicx}
+
+\usepackage[export]{adjustbox}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
+\usetikzlibrary {arrows.meta} 
+\usetikzlibrary{intersections}
+
+
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+
+\definecolor{cd3}{RGB}{128,18,0}
+\definecolor{cd8}{RGB}{16,128,152}
+\definecolor{cd20}{RGB}{200,48,128}
+
+\newcommand\sffont{\bfseries\normalsize}
+\newcommand\lfont{\normalsize}
+\newcommand\itfont{\itshape\normalsize}
+\newcommand\bitfont{\bfseries\itshape\normalsize}
+
+
+\begin{document}
+
+\small
+
+\begin{tikzpicture}
+
+\node (A) at (1mm,0) {\sffont  A};
+
+\begin{scope}[anchor=north west, xshift=4mm, yshift=0mm, local bounding box=panelA]
+
+\begin{scope}[anchor=north west, local bounding box=legendA1]
+\node[anchor=north west] (tumor) at (10.2mm,0) {\lfont tumor};
+\fill [color=black] ([xshift=-1.2mm, yshift=1.5mm]tumor.west) rectangle ([xshift=-4.2mm, yshift=-1.5mm]tumor.west) ;
+
+\node[anchor=north west] (stroma) at (3.02cm,0) {\lfont stroma};
+\fill [color=black!50] ([xshift=-1.2mm, yshift=1.5mm]stroma.west) rectangle ([xshift=-4.2mm, yshift=-1.5mm]stroma.west) ;
+\end{scope}
+
+\begin{scope}[anchor=north west, local bounding box=segm]
+\node (a1)  at (9mm,-0.7cm) {\includegraphics[]{images/vis_1.pdf}};
+\node[align=center]  at ([xshift=-18mm]a1.south) {initial segmentation};
+\draw [thick,-{Stealth}] ($(a1.east) + (3mm,0) $) -- +(1.4,0) ;
+\node (a2)  at ([xshift=20mm]a1.north east) {\includegraphics[]{images/vis_2.pdf}};
+\node[align=center]  at ([xshift=-20mm]a2.south) {remove small \\ sections and fill holes};
+\draw [thick,-{Stealth}] ($(a2.east) + (3mm,0) $) -- +(1.4,0) ;
+\node (a3)  at ([xshift=20mm]a2.north east) {\includegraphics[]{images/vis_3.pdf}};
+\node[align=center]  at ([xshift=-21mm]a3.south) {identify stroma-tumor \\ boundary};
+\draw [thick,-{Stealth}] ($(a3.east) + (3mm,0) $) -- +(1.4,0) ;
+\node (a4)  at ([xshift=20mm]a3.north east) {\includegraphics[]{images/vis_4.pdf}};
+\node[align=center]  at ([xshift=-16mm]a4.south) {calculate border \\ distance};
+\draw [thick,-{Stealth}] ($(a4.east)+ (3mm,0) $) -- +(1.4,0) ;
+\node (a5)  at ([xshift=20mm]a4.north east) {\includegraphics[]{images/vis_5.pdf}};
+\node[align=center]  at ([xshift=-20mm]a5.south) {analyze lymphocytes \\ close to border};
+\end{scope}
+
+\begin{scope}[anchor=north east, shift={($(segm.north east) + (-9mm, 0.8cm)$)}, local bounding box=legendA2]
+
+\node (lym) at (0,0) {lymphocytes};
+\node[anchor=east] at ([yshift=0mm]lym.west) {\includegraphics[]{images/lymphocytes.pdf}};
+
+\end{scope}
+
+\end{scope}
+
+\node (B) at (1mm,-3.5cm) {\sffont B};
+
+\node [anchor=north west] at (B.south east) {\includegraphics[]{plots/dice_scores.pdf}};
+
+\end{tikzpicture}
+
+\end{document}
+
+
+

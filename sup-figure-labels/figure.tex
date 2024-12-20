@@ -1,0 +1,55 @@
+\documentclass[border=10pt, multi, tikz]{standalone}
+
+\usepackage{fontspec}
+\setmainfont{Helvetica Neue Light}
+\usepackage{upgreek}
+
+\usepackage{tikz}
+
+\begin{document}
+
+\begin{tikzpicture}[]
+
+\footnotesize
+
+\begin{scope}[yshift=8.5cm]
+
+\tikzstyle{every node}=[inner sep=2pt];
+
+\node (a) at (0,0) {\includegraphics[width=2.2cm]{images/p1.png}};
+
+\node [anchor=north] (b) at (a.south) {\includegraphics[width=2.2cm]{images/p2.png}};
+
+\node [anchor=south] at (a.north) {Annotations};
+\node [anchor=south] at ([xshift=-0.1cm]a.north west) {\bfseries \normalsize A};
+
+\node (a) at ([xshift=1.5cm]a.east) {\includegraphics[width=2.2cm]{images/p1_proximity.png}};
+\node [anchor=north] (b) at (a.south) {\includegraphics[width=2.2cm]{images/p2_proximity.png}};
+\node [anchor=south] at (a.north) {Proximity};
+
+\node [anchor=south] at ([xshift=-0.1cm]a.north west) {\bfseries \normalsize B};
+
+\node [anchor=west] (a) at (a.east) {\includegraphics[width=2.2cm]{images/p1_cd3.png}};
+\node [anchor=north] (b) at (a.south) {\includegraphics[width=2.2cm]{images/p2_cd3.png}};
+\node [anchor=south] at (a.north) {$\uppsi$CD3};
+
+\node [anchor=west] (a) at (a.east) {\includegraphics[width=2.2cm]{images/p1_cd20.png}};
+\node [anchor=north] (b) at (a.south) {\includegraphics[width=2.2cm]{images/p2_cd20.png}};
+\node [anchor=south] at (a.north) {$\uppsi$CD20};
+
+\node [anchor=west] (a) at (a.east) {\includegraphics[width=2.2cm]{images/p1_foxp3.png}};
+\node [anchor=north] (b) at (a.south) {\includegraphics[width=2.2cm]{images/p2_foxp3.png}};
+\node [anchor=south] at (a.north) {$\uppsi$FOXP3};
+
+\node [anchor=west] (a) at (a.east) {\includegraphics[width=2.2cm]{images/p1_cd8.png}};
+\node [anchor=north] (b) at (a.south) {\includegraphics[width=2.2cm]{images/p2_cd8.png}};
+\node [anchor=south] at (a.north) {$\uppsi$CD8};
+
+\node [anchor=west] (a) at (a.east) {\includegraphics[width=2.2cm]{images/p1_cd45ro.png}};
+\node [anchor=north] (b) at (a.south) {\includegraphics[width=2.2cm]{images/p2_cd45ro.png}};
+\node [anchor=south] at (a.north) {$\uppsi$CD45RO};
+
+\end{scope}
+\end{tikzpicture}
+
+\end{document}

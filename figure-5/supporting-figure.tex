@@ -1,0 +1,39 @@
+\documentclass[10pt,border=2mm]{standalone}
+
+\usepackage{fontspec}
+\setmainfont{Helvetica Neue Light}
+
+\usepackage{upgreek}
+
+\usepackage{tikz}
+
+\newcommand{\figf}{\bfseries\normalsize}
+
+\begin{document}
+
+\small
+
+\begin{tikzpicture}[]
+
+%\node [inner sep=0pt,anchor=north west] (c) at (0,-5) {\includegraphics[page=3]{plots/populations.pdf}};
+%\node [anchor=north east]  at (c.north west) {\figf C};
+%\node [anchor=north east, xshift=5mm]  at (c.north) {\figf D};
+
+
+
+\node [inner sep=0pt,anchor=north west] (a) at (0,0) {\includegraphics[page=2]{plots/populations.pdf}};
+\node [anchor=north east]  at (a.north west) {\figf B};
+
+
+\node [inner sep=0pt,anchor=north west] (b) at (0,3) {\includegraphics[]{plots/foxp3-gating.pdf}};
+\node [anchor=north east]  at (b.north west) {\figf A};
+
+
+
+\end{tikzpicture}
+
+
+\end{document}
+
+
+

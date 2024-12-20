@@ -1,0 +1,125 @@
+\documentclass[a4paper]{article}
+
+\usepackage{fontspec}
+\setmainfont{Helvetica Neue Light}
+\usepackage{upgreek}
+
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
+
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+
+\newcommand\sffont{\bfseries\normalsize}
+\newcommand\lfont{\normalsize}
+
+\definecolor{fscore_col}{RGB}{0,109,44}
+\definecolor{precision_col}{RGB}{166,54,3}
+\definecolor{recall_col}{RGB}{8, 81, 156}
+
+\begin{document}
+
+\small
+
+\begin{tikzpicture}
+
+\node (A) at (0,0) {\sffont  A};
+
+\begin{scope}[anchor=north west,local bounding box=panelA]
+
+\node  [anchor=north west] at (0,-0.35) 
+	{\includegraphics[]{images/panel_A_annotations_and_detections.pdf }};
+\end{scope}
+
+
+\node  [anchor=north west] at (3.9cm,2mm) {\includegraphics[]{plots/counts_density_histogram.pdf }};
+
+\node (B) at (6.3cm,0) {\sffont B};
+
+u\begin{scope}[anchor=north west, shift={($(panelA.south west)+(3mm,-7mm)$)}]
+\node (ann) at (1mm,5mm) {annotations (n=6)};
+\fill [color=black] ([xshift=-1.2mm]ann.west) circle (1.5mm);
+
+\node (det) at (1mm,0) {detections (n=7)};
+\draw [color=black] ([xshift=-1.2mm]det.west) circle (1.5mm);
+\fill [color=black] ([xshift=-1.2mm]det.west) circle (.6mm);
+\end{scope}
+
+\node (C) at (0,-4.65cm) {\sffont C};
+
+\begin{scope}[anchor=north west,local bounding box=panelC, yshift=-4.65cm]
+
+\node (c1)  at (1.5cm,-0cm) {\includegraphics[]{images/panel_C_1.pdf}};
+\draw [color=black!50] ([xshift=2mm]c1.north east) --  ++(0, -2cm);
+\node (c2)  at ([xshift=5mm]c1.north east) {\includegraphics[]{images/panel_C_2.pdf }};
+\draw [color=black!50] ([xshift=2mm]c2.north east) --  ++(0, -2cm);
+\node (c3)  at ([xshift=5mm]c2.north east) {\includegraphics[]{images/panel_C_3.pdf }};
+\node (c4)  at ([xshift=1.3cm,yshift=5mm]c3.north east) {\includegraphics[]{images/panel_C_4.pdf }};
+
+\end{scope}
+
+\node (D) at (0, -7.25cm) {\sffont D};
+
+\begin{scope}[anchor=north west, shift={($(panelC.south west)+(0.75cm,-0.45mm)$)},local bounding box=panelD]
+
+\begin{scope}[anchor=north west, xshift=0mm, local bounding box=legendD]
+\node (immunet) at (10mm,0) {ImmuNet};
+\filldraw [color=gray, thick] ([xshift=-1.7mm, yshift=-1.0mm]immunet.west) rectangle ++(0.2, 0.2);
+
+\node (baseline) at ([xshift=5mm]immunet.north east) {baseline};
+\draw [color=gray, thick] ([xshift=-1.7mm, yshift=-1.0mm]baseline.west) rectangle ++(0.2, 0.2);
+
+\node (fscore) at ([xshift=5mm]baseline.north east) {F-score};
+\draw [line width=0.0353cm, fscore_col] ([xshift=-0.3cm, yshift=0]fscore.west) -- (fscore.west);
+
+\node (precision) at ([xshift=5mm]fscore.north east) {precision};
+\draw [line width=0.0353cm, precision_col] ([xshift=-0.3cm, yshift=0]precision.west) -- (precision.west);
+
+\node (recall) at ([xshift=5mm]precision.north east) {recall};
+\draw [line width=0.0353cm, recall_col] ([xshift=-0.3cm, yshift=0]recall.west) -- (recall.west);
+
+\node (cor) at ([xshift=5mm, yshift=-0.5mm]recall.north east) {$\uprho$};
+\draw [line width=0.0353cm, black] ([xshift=-0.3cm, yshift=0]cor.west) -- (cor.west);
+
+\end{scope}
+
+\node [anchor=north west] (d)  at ($(legendD.south west)+(-3.45cm,0.2cm)$) {\includegraphics[]{plots/roi_evaluation.pdf }};
+
+% Lines to separate tissues
+\newcommand*{\xshiftleft}{0.5cm}
+\newcommand*{\xshiftright}{-0.3cm}
+\newcommand*{\lwd}{0.01765cm}
+
+\newcommand*{\yshiftone}{2.41cm}
+\draw [line width=\lwd, gray] ([xshift=\xshiftleft, yshift=\yshiftone]d.west) -- ([xshift=\xshiftright, yshift=\yshiftone]d.east);
+
+\newcommand*{\yshifttwo}{0.93cm}
+\draw [line width=\lwd, gray] ([xshift=\xshiftleft, yshift=\yshifttwo]d.west) -- ([xshift=\xshiftright, yshift=\yshifttwo]d.east);
+
+\newcommand*{\yshiftthree}{-0.58cm}
+\draw [line width=\lwd, gray] ([xshift=\xshiftleft, yshift=\yshiftthree]d.west) -- ([xshift=\xshiftright, yshift=\yshiftthree]d.east);
+
+\newcommand*{\yshifttfour}{-2.05cm}
+\draw [line width=\lwd, gray] ([xshift=\xshiftleft, yshift=\yshifttfour]d.west) -- ([xshift=\xshiftright, yshift=\yshifttfour]d.east);
+
+
+\end{scope}
+
+
+\begin{scope}[shift={($(panelD.south west)$)},local bounding box=panelE]
+
+
+\node [anchor=north west] (d)  at (0,0.39cm) {\includegraphics[]{plots/density_f_score_r_value.pdf }};
+
+\end{scope}
+
+\node (E) at (0, -16.4cm) {\sffont E};
+
+\end{tikzpicture}
+
+\end{document}
+
+
+

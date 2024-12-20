@@ -1,0 +1,11 @@
+name: immunet_supp_f4
+channels:
+  - defaults
+dependencies:
+  - python=3.8
+  - pip=21.2.2
+  - pip:
+    - numpy==1.23.5
+    - Pillow==9.3.0
+    - scikit-image==0.19.3
+    - opencv-python==4.10.0.84

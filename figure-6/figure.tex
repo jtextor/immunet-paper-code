@@ -1,0 +1,231 @@
+\documentclass[a4paper]{article}
+
+\usepackage{fontspec}
+\setmainfont{Helvetica Neue Light}
+
+\usepackage[]{graphicx}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta} 
+
+
+\definecolor{tcell}{RGB}{102,26,26}
+\definecolor{bcell}{RGB}{200,48,128}
+\definecolor{cd8}{RGB}{16,128,152}
+\definecolor{cd3}{RGB}{128,18,0}
+
+\definecolor{tumor}{RGB}{157,201,225}
+\definecolor{stroma}{RGB}{229,229,229}
+
+
+
+\usepackage[active,tightpage]{preview}
+\usepackage[export]{adjustbox}
+
+\PreviewEnvironment{tikzpicture}
+
+\newcommand\sffont{\bfseries\normalsize}
+
+\begin{document}
+
+\small
+
+\newlength{\yshift}
+\setlength{\yshift}{1.7cm}
+
+\begin{tikzpicture}
+
+
+\begin{scope}[xshift=8cm, yshift=7.5cm,inner sep=0pt, outer sep=0pt] %% BEGIN example images low
+
+\node [inner sep=2pt] (low)  at (1.5cm,-1cm) {\includegraphics[width=465.75pt,draft=false]{plots/low_density.png}};
+
+
+% Zoom bladder low
+\draw [color=black] ([xshift=12.8mm, yshift=-2.8mm]low.west) rectangle ++(2.5mm, -2.5mm); 
+
+\node[] (bladder_low)  at ([xshift=4cm, yshift=-\yshift]low.west) {\includegraphics[width=2cm, frame=0.75pt]{plots/2020-01-31-phenotyping-paper-bladder.bladder10.infiltration.png}};
+
+\node [anchor=north,inner sep=2pt] at (bladder_low.south) {341 TILs/mm$^2$};
+
+\draw [color=black] ([xshift=12.8mm, yshift=-5.3mm]low.west) --  (bladder_low.south west) ;
+\draw [color=black] ([xshift=15.3mm, yshift=-2.8mm]low.west) --  (bladder_low.north east) ;
+
+
+% Zoom lung low
+
+\draw [color=black] ([xshift=62.2mm, yshift=0mm]low.west) rectangle ++(2.5mm, -2.5mm); 
+
+\node[] (lung_low)  at ([xshift=7cm, yshift=-\yshift]low.west) {\includegraphics[width=2cm, frame=0.75pt]{plots/2020-02-12-phenotyping-paper-lung-bcell.lung07.infiltration.png}};
+
+\draw [color=black] ([xshift=62.2mm, yshift=0mm]low.west) --  (lung_low.north west) ;
+\draw [color=black] ([xshift=64.7mm, yshift=0mm]low.west) --  (lung_low.north east) ;
+
+\node [anchor=north,inner sep=2pt] at (lung_low.south) {106 TILs/mm$^2$};
+
+% Zoom melanoma low
+
+\draw [color=black] ([xshift=99.5mm, yshift=0.6mm]low.west) rectangle ++(2.5mm, -2.5mm); 
+
+\node[] (melanoma_low)  at ([xshift=10.8cm, yshift=-\yshift]low.west) {\includegraphics[width=2cm, frame=0.75pt]{plots/2020-01-31-phenotyping-paper-melanoma.melanoma09.infiltration.png}};
+
+\draw [color=black] ([xshift=99.5mm, yshift=0.6mm]low.west) -- (melanoma_low.north west) ;
+\draw [color=black] ([xshift=102mm, yshift=0.6mm]low.west) -- (melanoma_low.north east) ;
+
+\node [anchor=north,inner sep=2pt] at (melanoma_low.south) {14 TILs/mm$^2$};
+
+% Zoom prostate low
+
+\draw [color=black] ([xshift=151mm, yshift=9mm]low.west) rectangle ++(2.5mm, -2.5mm); 
+
+\node[] (prostate_low)  at ([xshift=15.5cm, yshift=-\yshift]low.west) {\includegraphics[width=2cm, frame=0.75pt]{plots/2020-01-31-phenotyping-paper-prostate.prostate08.infiltration.png}};
+
+\draw [color=black] ([xshift=151mm, yshift=9mm]low.west) --  (prostate_low.north west) ;
+\draw [color=black] ([xshift=153.5mm, yshift=9mm]low.west) --  (prostate_low.north east) ;
+
+\node [anchor=north,inner sep=2pt] at (prostate_low.south) {165 TILs/mm$^2$};
+
+%% labels
+
+\node at ([yshift=2.2cm] bladder_low.north west) {bladder};
+\node at ([yshift=2.2cm] lung_low.north west) {lung};
+\node at ([yshift=2.2cm] melanoma_low.north west) {melanoma};
+\node at ([yshift=2.2cm] prostate_low.north west) {prostate};
+
+\node [text width=1.5cm, anchor=east, align=center] at (low.west) {low TIL density};
+
+\node [anchor=east, text width=1cm] (tclab) at ([yshift=-4mm]low.south west) {T cell};
+\node [anchor=east, text width=1cm] (bclab) at ([yshift=-8mm]low.south west) {B cell};
+\node [anchor=east, text width=1cm] (tumlab) at ([yshift=-12mm]low.south west) {tumor};
+\node [anchor=east, text width=1cm] (strolab) at ([yshift=-16mm]low.south west) {stroma};
+
+
+\fill [tcell] ([xshift=-3mm]tclab.west) circle (1mm);
+\fill [bcell] ([xshift=-3mm]bclab.west) circle (1mm);
+
+
+\fill [tumor] ([xshift=-4.5mm,yshift=-1.5mm]tumlab.west) rectangle +(3mm,3mm);
+\fill [stroma] ([xshift=-4.5mm,yshift=-1.5mm]strolab.west) rectangle +(3mm,3mm);
+
+
+%\draw [color=black, line width=2pt] (bladder_low.north west) + (1.1mm, 6mm)$)  -- ($(bladder_low.north east) + (-1.1mm, 6mm)$) ;
+%\node[anchor= north east] at ($(bladder_low.north east) + (-1.1mm, 5.5mm)$) {\lfont 1 cm};
+
+
+\end{scope} %% END example images lo
+
+\begin{scope}[xshift=8cm, yshift=3cm,inner sep=0pt, outer sep=0pt] %% BEGIN example images hi
+
+\node [inner sep=2pt] (high)  at (1.5cm,-1cm) {\includegraphics[width=465.75pt,draft=false]{plots/high_density.png}};
+
+%\node [anchor=north west] at ([xshift=10.3cm, yshift=-3.5mm] high.south west) {\includegraphics[]{images/distance_to_tumor_legend.pdf}};
+
+
+% Zoom bladder high
+\draw [color=black] ([xshift=21.5mm, yshift=0mm]high.west) rectangle ++(2.5mm, -2.5mm); 
+
+\node[] (bladder_high)  at ([xshift=3.5cm, yshift=-\yshift]high.west) {\includegraphics[width=2cm, frame=0.75pt]{plots/2020-01-31-phenotyping-paper-bladder.bladder01.infiltration.png}};
+
+\node [anchor=north,inner sep=2pt] at (bladder_high.south) {2756 TILs/mm$^2$};
+
+\draw [color=black] ([xshift=24mm, yshift=0mm]high.west) --  (bladder_high.north east);
+\draw [color=black] ([xshift=21.5mm, yshift=-2.5mm]high.west) --  (bladder_high.south west);
+
+
+% Zoom lung high
+\draw [color=black] ([xshift=50.8mm, yshift=-2.5mm]high.west) rectangle ++(2.5mm, -2.5mm); 
+
+
+\node[] (lung_high)  at ([xshift=6.3cm, yshift=-\yshift]high.west) {\includegraphics[width=2cm, frame=0.75pt]{plots/2020-02-12-phenotyping-paper-lung-bcell.lung01.infiltration.png}};
+
+\draw [color=black] ([xshift=53.3mm, yshift=-2.5mm]high.west) --  (lung_high.north east);
+\draw [color=black] ([xshift=50.8mm, yshift=-5mm]high.west) --  (lung_high.south west);
+
+\node [anchor=north,inner sep=2pt] at (lung_high.south) {1427 TILs/mm$^2$};
+
+% Zoom melanoma high
+\draw [color=black] ([xshift=101mm, yshift=12mm]high.west) rectangle ++(2.5mm, -2.5mm); 
+
+
+\node[] (melanoma_high)  at ([xshift=9.5cm, yshift=-\yshift]high.west) {\includegraphics[width=2cm, frame=0.75pt]{plots/2020-01-31-phenotyping-paper-melanoma.melanoma22.infiltration.png}};
+
+\draw [color=black] ([xshift=103.5mm, yshift=12mm]high.west) --  (melanoma_high.north east) ;
+\draw [color=black] ([xshift=101mm, yshift=12mm]high.west) --  (melanoma_high.north west) ;
+
+\node [anchor=north,inner sep=2pt] at (melanoma_high.south) {2297 TILs/mm$^2$};
+
+% Zoom prostate high
+\draw [color=black] ([xshift=137.8mm, yshift=10.2mm]high.west) rectangle ++(2.5mm, -2.5mm); 
+
+\node[] (prostate_high)  at ([xshift=15.5cm, yshift=-\yshift]high.west) {\includegraphics[width=2cm, frame=0.75pt]{plots/2020-01-31-phenotyping-paper-prostate.prostate05.infiltration.png}};
+
+
+\draw [color=black] ([xshift=140.3mm, yshift=10.2mm]high.west) --  (prostate_high.north east);
+\draw [color=black] ([xshift=137.8mm, yshift=7.8mm]high.west) --  (prostate_high.south west);
+
+
+\node [anchor=north,inner sep=2pt] at (prostate_high.south) {1452 TILs/mm$^2$};
+
+\node [text width=1.5cm, anchor=east, align=center] at (high.west) {high TIL density};
+
+% scale bar
+\draw [line width=4pt] ([xshift=-4.75cm,yshift=-3mm]high.south east) edge node [midway,below,inner sep=6pt] {1cm} +(1.6cm,0cm);
+
+
+
+\end{scope} %% END example images hi
+
+
+
+
+
+
+\begin{scope} %% panel C+E 
+
+\node [anchor=north west]  (landscape)  at (-0.5cm,-1cm) {\includegraphics[]{plots/nn.combined.pdf  }};
+
+
+
+%\node [anchor=south east] (foxp3_neigh) at (landscape.east) {Treg neighbors:};
+
+\node [anchor=south east] (cd8) at ([xshift=-3mm,yshift=-2.4cm]landscape.east) {CTL};
+\fill [color=cd8] ([xshift=-1mm]cd8.west) circle (.9mm);
+
+\node [anchor=east] (cd4) at ([xshift=-3mm]cd8.west) {Th};
+\fill [color=cd3] ([xshift=-1mm]cd4.west) circle (.9mm);
+
+\end{scope} %% end panel E
+
+
+\begin{scope}[xshift=6.25cm,yshift=-6cm] %% panel D (must be on top of E)
+
+\node[align=center,anchor=east] (lym_neigh) at (0,0) {all lymphocytes: \\ avg. \textit{two} Th neighbors};
+\node [anchor=west] (lym_neigh_vis) at (lym_neigh.east) {\includegraphics[]{images/neigh_1.pdf}};
+
+\node [anchor=west] (cd8_neigh_vis) at ([xshift=4.7cm]lym_neigh_vis.east) {\includegraphics[]{images/neigh_2.pdf}};
+
+\node[align=center,anchor=west] (cd3_neigh) at (cd8_neigh_vis.east) {CTLs: \\ avg. \textit{three} Th neighbors};
+
+\draw [] (lym_neigh_vis.east)
+	edge [->] node [midway, above] {1.5x neighbor preference}
+	(cd8_neigh_vis.west) ;
+
+\end{scope} %% end panel D
+
+\node [anchor=north west] at (landscape.north west) {\sffont B};
+\node [anchor=south west] at ([yshift=-4.5cm]landscape.north west) {\sffont C};
+\node [anchor=south west] at ([yshift=-9cm]landscape.north west) {\sffont D};
+\node [anchor=north west] at ([yshift=9.2cm]landscape.north west) {\sffont A};
+
+\node [anchor=east, text width=1cm] (tclab) at ([xshift=3.2cm,yshift=-10mm]landscape.north west) {T cell};
+\node [anchor=east, text width=1cm] (bclab) at ([xshift=3.2cm,yshift=-14mm]landscape.north west) {B cell};
+\fill [tcell] ([xshift=-1mm]tclab.west) circle (.75mm);
+\fill [bcell] ([xshift=-1mm]bclab.west) circle (.75mm);
+
+
+\end{tikzpicture}
+
+
+\end{document}
+
+
