@@ -3,6 +3,7 @@ import pandas as pd
 from abc import ABCMeta, abstractmethod
 
 data_path = Path("data")
+pred_archive_path = data_path / "prediction.tar.gz"
 pred_path = data_path / "prediction"
 immunet_pred_path = pred_path / "immunet"
 inform_pred_path = pred_path / "inform"

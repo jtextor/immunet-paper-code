@@ -1,8 +1,9 @@
 import pandas as pd
+import tarfile
 # ImmuNet: uncomment to use ImmuNet to find cells on tiles
 #from inference import ImmuNetPredictionHandler
 from rois import load_val_rois
-from utils import DS_TS, ImmuNetPredictionLoader, InFormPredictionLoader, immunet_pred_path, inform_pred_path, \
+from utils import DS_TS, ImmuNetPredictionLoader, InFormPredictionLoader, pred_path, pred_archive_path, immunet_pred_path, inform_pred_path, \
     rois_json_path, data_path, model_path, images_path
 
 
@@ -47,6 +48,12 @@ def analyse():
 
     return pd.DataFrame(results)
 
+
+if not pred_path.is_dir():
+    file = tarfile.open(pred_archive_path)
+    # extracting file
+    file.extractall(data_path)
+    file.close()
 
 df = analyse()
 df.to_csv(data_path / "counts.csv")

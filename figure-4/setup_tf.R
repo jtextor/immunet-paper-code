@@ -12,4 +12,4 @@ remotes::install_version("RColorBrewer", "1.1-3", repos = "https://cloud.r-proje
 remotes::install_version("scales", "1.3.0", repos = "https://cloud.r-project.org", upgrade="always")
 remotes::install_version("egg", "0.4.5", repos = "https://cloud.r-project.org", upgrade="always")
 remotes::install_version("gridExtra", "2.3", repos = "https://cloud.r-project.org", upgrade="always")
-remotes::install_version("hexbin", "1.28.5 ", repos = "https://cloud.r-project.org", upgrade="always")
+remotes::install_version("hexbin", "1.28.5", repos = "https://cloud.r-project.org", upgrade="always")

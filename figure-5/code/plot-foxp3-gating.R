@@ -38,7 +38,7 @@ for (i in 1:6) {
 	ds <- ds[!is.na(ds[,1]),]
 
 	## plot all cells
-	gates.facs <- readRDS("external-data/gates.rds")
+	gates.facs <- readRDS("data/gates.rds")
 	gg <- gates.facs[["FOXP3"]][[i]]
 
 	densityplot2d(ds[,color_names["CD3"]], ds[,color_names["FOXP3"]], 

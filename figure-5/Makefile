@@ -21,7 +21,7 @@ data/populations.txt : code/prepare-populations.R data/cytoagars-inform.rds
 plots/biplots.pdf : code/plot-biplots.R data/biplots.rds
 	Rscript $<
 
-data/biplots.rds : code/prepare-biplots.R external-data/inform/cytoagar01.fcs
+data/biplots.rds : code/prepare-biplots.R data/inform/cytoagar01.fcs
 	Rscript $<
 
 plots/biplots-facs.pdf : code/plot-biplots-facs.R data/tonsil01.rds
@@ -30,5 +30,5 @@ plots/biplots-facs.pdf : code/plot-biplots-facs.R data/tonsil01.rds
 data/tonsil01.rds : code/prepare-biplots-facs.R
 	Rscript $<
 
-data/cytoagars-inform.rds : code/prepare-inform-data.R external-data/inform/cytoagar01.fcs
+data/cytoagars-inform.rds : code/prepare-inform-data.R data/inform/cytoagar01.fcs
 	Rscript $<

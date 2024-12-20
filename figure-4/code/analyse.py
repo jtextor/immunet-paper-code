@@ -1,9 +1,10 @@
 import networkx as nx
 import math
+import tarfile
 import numpy as np
 import pandas as pd
 from rois import load_val_rois, panel
-from utils import DS_TS, ImmuNetPredictionLoader, InFormPredictionLoader, immunet_pred_path, inform_pred_path, \
+from utils import DS_TS, ImmuNetPredictionLoader, InFormPredictionLoader, pred_path, pred_archive_path, immunet_pred_path, inform_pred_path, \
     rois_json_path, data_path, model_path, images_path
 # ImmuNet: uncomment to use ImmuNet to find cells on tiles
 # from inference import ImmuNetPredictionHandler
@@ -153,5 +154,12 @@ def analyse():
     pd.DataFrame(roi_data).to_csv(data_path / "rois_info.csv", index=False)
     pd.DataFrame(f_score_results).to_csv(data_path / "detection_stat.csv", index=False)
     pd.DataFrame(cd45ro_corr_results).to_csv(data_path / "cd45ro_stat.csv", index=False)
+
+
+if not pred_path.is_dir():
+    file = tarfile.open(pred_archive_path)
+    # extracting file
+    file.extractall(data_path)
+    file.close()
 
 analyse()

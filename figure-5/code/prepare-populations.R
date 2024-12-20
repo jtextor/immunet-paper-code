@@ -5,13 +5,13 @@ suppressMessages(library(polyclip))
 
 source("code/tools.R")
 
-gates.facs <- readRDS("external-data/gates.rds")
+gates.facs <- readRDS("data/gates.rds")
 data.facs <- readRDS("data/tonsils-facs.rds")
 
-gates.inform.cytoagar <- readRDS("external-data/gates-inform-cytoagar.rds")
+gates.inform.cytoagar <- readRDS("data/gates-inform-cytoagar.rds")
 data.inform.cytoagar <- readRDS( "data/cytoagars-inform.rds" )
 
-gates.inform.tissue <- readRDS("external-data/gates-inform-tissue.rds")
+gates.inform.tissue <- readRDS("data/gates-inform-tissue.rds")
 data.inform.tissue <- readRDS( "data/tonsils-inform.rds" )
 
 inform.mapping.tissue <- inform.mapping
@@ -60,7 +60,7 @@ for(i in 1:6) {
 	marker.thresholds <- c(CD3=0.4, CD20=0.4, CD8=0.4, FOXP3=0.4, CD45RO=0.25)
 
 	for(wh in c("tonsil", "cytoagar")) {
-		xx <- exprs(read.FCS(paste0("external-data/immunet/", wh, "0", i, ".fcs")))
+		xx <- exprs(read.FCS(paste0("data/immunet/", wh, "0", i, ".fcs")))
 
 		cat( 
 			mean(apply_immunet_thresholds(xx, marker.thresholds, "CD20", "-CD3", "-CD8", "-FOXP3")), " ",

@@ -519,3 +519,13 @@ cython_debug/
 **/external-data/*
 **/slides_data/*
 **/plots/*
+**/*.gz
+**/*.json
+**/*.jpg
+**/*.png
+**/*.csv
+**/*.pdf
+**/*.txt
+**/*.tsv
+**/*.rds
+**/*.fcs
