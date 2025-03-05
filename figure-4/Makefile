@@ -1,4 +1,4 @@
-all : figure.pdf images/f_score.table.pdf supporting-figure.pdf
+all : figure.pdf plots/f_score.table.pdf supporting-figure.pdf
 
 figure.pdf : figure.tex plots/counts_density_histogram.pdf plots/f_score_r_value.pdf plots/density_f_score_r_value.pdf
 	latexmk -use-make -xelatex $<

@@ -30,11 +30,11 @@
 \begin{scope}[anchor=north west,local bounding box=panelA]
 
 \node  [anchor=north west] at (0,-0.35) 
-	{\includegraphics[]{images/panel_A_annotations_and_detections.pdf }};
+	{\includegraphics{images/panel_A_annotations_and_detections.pdf}};
 \end{scope}
 
 
-\node  [anchor=north west] at (3.9cm,2mm) {\includegraphics[]{plots/counts_density_histogram.pdf }};
+\node  [anchor=north west] at (3.9cm,2mm) {\includegraphics{plots/counts_density_histogram.pdf}};
 
 \node (B) at (6.3cm,0) {\sffont B};
 
@@ -51,12 +51,12 @@ u\begin{scope}[anchor=north west, shift={($(panelA.south west)+(3mm,-7mm)$)}]
 
 \begin{scope}[anchor=north west,local bounding box=panelC, yshift=-4.65cm]
 
-\node (c1)  at (1.5cm,-0cm) {\includegraphics[]{images/panel_C_1.pdf}};
+\node (c1)  at (1.5cm,-0cm) {\includegraphics{images/panel_C_1.pdf}};
 \draw [color=black!50] ([xshift=2mm]c1.north east) --  ++(0, -2cm);
-\node (c2)  at ([xshift=5mm]c1.north east) {\includegraphics[]{images/panel_C_2.pdf }};
+\node (c2)  at ([xshift=5mm]c1.north east) {\includegraphics{images/panel_C_2.pdf}};
 \draw [color=black!50] ([xshift=2mm]c2.north east) --  ++(0, -2cm);
-\node (c3)  at ([xshift=5mm]c2.north east) {\includegraphics[]{images/panel_C_3.pdf }};
-\node (c4)  at ([xshift=1.3cm,yshift=5mm]c3.north east) {\includegraphics[]{images/panel_C_4.pdf }};
+\node (c3)  at ([xshift=5mm]c2.north east) {\includegraphics{images/panel_C_3.pdf}};
+\node (c4)  at ([xshift=1.3cm,yshift=5mm]c3.north east) {\includegraphics{images/panel_C_4.pdf}};
 
 \end{scope}
 
@@ -85,7 +85,7 @@ u\begin{scope}[anchor=north west, shift={($(panelA.south west)+(3mm,-7mm)$)}]
 
 \end{scope}
 
-\node [anchor=north west] (d)  at ($(legendD.south west)+(-3.45cm,0.2cm)$) {\includegraphics[]{plots/roi_evaluation.pdf }};
+\node [anchor=north west] (d)  at ($(legendD.south west)+(-3.45cm,0.2cm)$) {\includegraphics{plots/roi_evaluation.pdf}};
 
 % Lines to separate tissues
 \newcommand*{\xshiftleft}{0.5cm}
@@ -111,7 +111,7 @@ u\begin{scope}[anchor=north west, shift={($(panelA.south west)+(3mm,-7mm)$)}]
 \begin{scope}[shift={($(panelD.south west)$)},local bounding box=panelE]
 
 
-\node [anchor=north west] (d)  at (0,0.39cm) {\includegraphics[]{plots/density_f_score_r_value.pdf }};
+\node [anchor=north west] (d)  at (0,0.39cm) {\includegraphics{plots/density_f_score_r_value.pdf}};
 
 \end{scope}
 
