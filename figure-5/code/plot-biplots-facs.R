@@ -8,6 +8,8 @@ if (!exists("tonsils")) {
 	tonsils <- readRDS("data/tonsil01.rds")
 }
 
+dir.create("plots", showWarnings = FALSE)
+
 cd3 <- "BV421-A"
 cd20 <- "PE-A"
 cd8 <- "PerCP-Cy5.5-A"
