@@ -2,9 +2,23 @@
 
 This repository will be used to publish code that underlies analyses and figures shown in the forthcoming paper "ImmuNet: A Segmentation-Free Machine Learning Pipeline for Immune Landscape Phenotyping in Tumors by Muliplex Imaging" by Sultan et al (see preprint here: https://www.biorxiv.org/content/10.1101/2021.10.22.464548v2).
 
+# Requirements
+
+For all figures except Figure 5, the following software is sufficient:
+
+- `Conda`, minimum version 24.9.2
+- `Latex`, including XeLaTeX engine
+
+Then, a figure can be built by running `bash run.sh` from its root folder. This script automatically hangles creation of a virtual environment with all the depencencies installed, runs data analysis scripts in the correct order and eventually builds a figure with Latex. 
+
+If you want to run inference on mIHC images to reproduce Figures 3 and 4 you need hardware that supports `TensorFlow 1.14.0` and `R` (minimum version 4.3.0) installed. By default the figures are built using the cached prediction. 
+
+Figure 5:
+- `R`, minimum version 4.3.0
+
 # Steps to reproduce the figures
 
-The data needed to reproduce the analysis perfromed in the paper and to build the figures are located on [Zenodo achrive](https://zenodo.org/records/8084976); the data hierarchy matches the hierarchy of the code in this repository. Every figure folder should contain all the assets necessary to build it: code, data, external images, a Makefile and a latex file that defines the layout of a figure. The typical file hierarchy inside a figure folder is:
+The data needed to reproduce the analysis performed in the paper and to build the figures are located on [Zenodo achrive](https://zenodo.org/records/8084976); the data hierarchy matches the hierarchy of the code in this repository. Every figure folder should contain all the assets necessary to build it: code, data, external images, a Makefile and a latex file that defines the layout of a figure. The typical file hierarchy inside a figure folder is:
 
 ```
 - code
@@ -17,21 +31,26 @@ requirements.txt
 run.sh
 ```
 
-The `code` folder contains the source code that reproduces the analysis and generates auxiliary data files and plots. The `data` folder contains the data used in the analysis. External assets that are needed to complete the figure should be located in `images` folder. The plots that visualise the results of data analysis are saved in the `plots` folder, which should exist before the code is executed. `Makefile` specifies the order in which different parts of the analysis must be run with the `figure.pdf` file as a final target, built with `figure.tex` file. For convenience, `run.sh` script that fully automates the workfolw is provided. First, a conda environment is created based on the dependencies (R and Python) listed in the `requirements.txt` and then `make` is executed.
+The `code` folder contains the source code that reproduces the analysis and generates auxiliary data files and plots. The `data` folder contains the data required for the analysis. External assets that are needed to complete the figure should be located in `images` folder. The plots that visualise the results of data analysis are saved in the `plots` folder, which should exist before the code is executed. `Makefile` specifies the order in which different parts of the analysis must be run with the `figure.pdf` file as a final target, built with `figure.tex` file. `run.sh` script creates a conda environment based on the dependencies (R and Python) listed in the `requirements.txt` and then executes `make`.
 
-Executing `run.sh` is a recommended way to run the code. This requires `conda` (minimum version 24.9.2) and `latex` (including XeLaTeX engine) to be installed in your environment.
-First, put the data related to a figure in the `data` folder and uncompressed the related `images.tar.gz` into the `images` folder. All `.tar.gz` archives should be uncompressed, whereas files compressed as `.gz`, should be left as they are. Then, run `bash run.sh` and the figure will be built automatically. Note, that creation of a conda environment and execution of the code might take a while for some figures. 
+Steps to reproduce a figure:
+1. Place the data needed for a figure in the `data` folder.
+2. Uncompress `images.tar.gz` into the `images` folder.
+3. Uncompressed all `.tar.gz` archives (but do not uncompressed `.gz` files)
+4. Run `bash run.sh`  
 
-Instructions specific to some figures are given below.
+Note, that creation of a conda environment and execution of the code might take a while for some figures. 
+
+Figure-specific instructions are given below.
 
 ## Figure 3 and 4
 
-By default the cached prediction (`prediction.tar.gz`) of ImmuNet and the baseline algorithm InForm will be used for the analysis. However, an option to run inference with ImmuNet on tissue images is provided. For this you also need to uncompressed a corresponding image archive into the `data` folder:
+By default the cached prediction (`prediction.tar.gz`) of ImmuNet and the baseline algorithm InForm will be used for the analysis. However, an option to run inference with ImmuNet on mIHC images is provided. For this you also need to uncompressed a corresponding image archive into the `data` folder:
 
 - `tilecache.tar.gz` - for figure 3
 - `rois_tilecache.tar.gz` - for figure 4
 
-Then, you need to use a separate scripts, named `run_tf.sh` that create conda environments in which TensorFlow 1 is installed. Because of the confilict bethween the Python version that supports TensorFlow 1 and necessary R version, R packages will be installed in your default R.
+Then, use a script, named `run_tf.sh` that creates a conda environment with TensorFlow 1.14. **Note**: because of the confilict between the Python version that supports TensorFlow 1 and necessary R version, R packages will be installed in your default R!
 
 ## Figure 5
 
@@ -46,6 +65,9 @@ remotes=2.5.0
 
 Then, `flowCore` should be installed with `BiocManager::install("flowCore")` and `tiltools` with `remotes::install_github("jtextor/tiltools")`. After that `run.sh` can be executed.
 
+# Common issues
+
+We use `Helvetica Neue` font family for text on figures. If it is not installed on your system, you can change fonts in the `settings.R` file located in the root folder of the repository and in the `\setmainfont` comman of each `figure.tex` file.
 
 
 
