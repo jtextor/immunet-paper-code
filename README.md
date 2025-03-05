@@ -64,7 +64,8 @@ This figure uses Bioconductor software that is problematic to install with conda
 
 # Common issues
 
-We use `Helvetica Neue` font family for text on figures. If it is not installed on your system, you can change fonts in the `settings.R` file located in the root folder of the repository and in the `\setmainfont` comman of each `figure.tex` file.
+1. We use `Helvetica Neue` font family for text on figures. If it is not installed on your system, you can change fonts in the `settings.R` file located in the root folder of the repository and in the `\setmainfont` comman of each `figure.tex` file.
+2. On some systems `conda` may fail to resolve the dependencies. Switching to [mamba](https://github.com/mamba-org/mamba) should fix the issue.  
 
 
 
