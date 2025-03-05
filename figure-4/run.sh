@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+mkdir -p plots
+
 conda create -n immunet_fig4 python=3.8 r-base=4.3.1 r-essentials
 
 CONDA_BASE=$(conda info --base)

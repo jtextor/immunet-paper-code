@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+mkdir -p plots
+
 conda env create -f environment_tf.yml
 
 CONDA_BASE=$(conda info --base)
