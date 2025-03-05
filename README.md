@@ -34,9 +34,9 @@ run.sh
 The `code` folder contains the source code that reproduces the analysis and generates auxiliary data files and plots. The `data` folder contains the data required for the analysis. External assets that are needed to complete the figure should be located in `images` folder. The plots that visualise the results of data analysis are saved in the `plots` folder, which should exist before the code is executed. `Makefile` specifies the order in which different parts of the analysis must be run with the `figure.pdf` file as a final target, built with `figure.tex` file. `run.sh` script creates a conda environment based on the dependencies (R and Python) listed in the `requirements.txt` and then executes `make`.
 
 Steps to reproduce a figure:
-1. Place the data needed for a figure in the `data` folder.
-2. Uncompress `images.tar.gz` into the `images` folder.
-3. Uncompressed all `.tar.gz` archives (but do not uncompressed `.gz` files)
+1. Place the data needed for a figure in the `data` folder. This include everything except `images.tar.gz`.
+2. In the `data` folder, uncompressed all `.tar.gz` archives (but do not uncompressed `.gz` files).
+3. Uncompress `images.tar.gz` into the `images` folder.
 4. Run `bash run.sh`  
 
 Note, that creation of a conda environment and execution of the code might take a while for some figures. 
@@ -54,16 +54,13 @@ Then, use a script, named `run_tf.sh` that creates a conda environment with Tens
 
 ## Figure 5
 
-This figure uses Bioconductor software that is problematic to install with conda, therefore needed R packages have to be installed manually. First, install:
+This figure uses Bioconductor software that is problematic to install with conda, therefore needed R packages have to be installed manually. Steps to buld a figure:
 
-```
-irr=0.84.1
-BiocManager=1.30.25
-polyclip=1.10-7
-remotes=2.5.0
-```
-
-Then, `flowCore` should be installed with `BiocManager::install("flowCore")` and `tiltools` with `remotes::install_github("jtextor/tiltools")`. After that `run.sh` can be executed.
+1. Fill in the `data` and `images` folders as described above
+2. Install R packages: `irr=0.84.1`, `BiocManager=1.30.25`, `polyclip=1.10-7`, `remotes=2.5.0`
+3. Run `BiocManager::install("flowCore")`
+4. Run `remotes::install_github("jtextor/tiltools")`
+5. Run `make` in the root folder of the figure 
 
 # Common issues
 
