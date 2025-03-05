@@ -55,6 +55,8 @@ ggplot(aes(cd3, cd20)) +
   scale_x_log10(limits=c(0.002,NA)) + 
   scale_y_log10(limits=c(0.002, NA))
 
+dir.create("plots", showWarnings = FALSE)
+
 pdf_out("plots/expressions.pdf", width=6.5, height=1.2)
 print(p)
 dev.off()
