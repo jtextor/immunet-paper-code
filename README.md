@@ -18,7 +18,7 @@ Figure 5:
 
 # Steps to reproduce the figures
 
-The data needed to reproduce the analysis performed in the paper and to build the figures are located on [Zenodo archive](https://zenodo.org/records/8084976); the folder hierarchy in the data archive matches the folder hierarchy in this repository. Before building a figure, you need to make sure that its folder contains all the necessary assets: code, data, external images, a Makefile, and a Latex file that defines the figure layout. The typical file hierarchy inside a figure folder is:
+The data needed to reproduce the analysis performed in the paper and to build the figures are located on [Zenodo archive](https://zenodo.org/records/15046015); the folder hierarchy in the data archive matches the folder hierarchy in this repository. Before building a figure, you need to make sure that its folder contains all the necessary assets: code, data, external images, a Makefile, and a Latex file that defines the figure layout. The typical file hierarchy inside a figure folder is:
 
 ```
 - code
